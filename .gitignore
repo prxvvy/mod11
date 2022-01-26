@@ -8,3 +8,5 @@ build/
 index.ts
 test/
 lib/
+*.out
+*.o
