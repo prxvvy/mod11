@@ -8,10 +8,11 @@
 
 #include "bool.h"
 
-#define Mod11 11
+#define MOD11 11
+#define RUTCONDIGITOLONGITUD 9
 
 char *LimpiarRut(char *p_rutCompleto);
 
-char *ObtenerDigidoVerificador(char *p_numer);
+char ObtenerDigidoVerificador(char *p_numer);
 
 #endif /* RUT_H */

@@ -17,6 +17,18 @@
 #include "include/bool.h"
 #include <string.h>
 
+
+void ReverseString(char *p_string) {
+	char *p_null = p_string;
+	while (*p_null) p_null++;
+	p_null--;
+	for ( ; p_string < p_null; p_string++, p_null--) {
+		char h = *p_string, t = *p_null;
+		*p_string = t;
+		*p_null = h;
+	}
+}
+
 char *Replace(char *p_input, char *p_toReplace, char *p_replaceWith) {
 	char *p_newString;
 	int i, cnt = 0;

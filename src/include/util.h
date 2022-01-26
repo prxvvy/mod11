@@ -11,4 +11,7 @@
 char *Replace(char *p_input, char *p_toReplace, char *p_replaceWith);
 
 Bool Includes(char *p_input, char *p_charToFind);
+
+void ReverseString(char *p_string);
+
 #endif /* UTIL_H */
