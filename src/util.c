@@ -17,6 +17,13 @@
 #include "include/bool.h"
 #include <string.h>
 
+char *SliceString(char *p_str, int end, size_t newSizeString) {
+	char *p_newString = calloc(newSizeString, sizeof(char));
+	for (int i = 0; i < end; i++) {
+    strcat(p_newString, (char [2]) {(char) p_str[i], '\0'});
+	}
+	return p_newString;
+}
 
 void ReverseString(char *p_string) {
 	char *p_null = p_string;
