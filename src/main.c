@@ -20,7 +20,11 @@
 #include <string.h>
 
 int main() {
-  char digito = ObtenerDigidoVerificador("25938058");
-  printf("%c\n", digito);
+  int esValido = EsValido("5328478");
+  if (esValido == 1) {
+    printf("El rut es valido.\n");
+  } else {
+    printf("El rut es invalido.\n");
+  }
   return 0;
 }

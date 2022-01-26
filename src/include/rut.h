@@ -15,4 +15,6 @@ char *LimpiarRut(char *p_rutCompleto);
 
 char ObtenerDigidoVerificador(char *p_numer);
 
+int EsValido(char *p_rut);
+
 #endif /* RUT_H */
