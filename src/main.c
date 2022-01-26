@@ -26,5 +26,5 @@ int main() {
   } else {
     printf("El rut es invalido.\n");
   }
-   return 0;
+  return 0;
 }
