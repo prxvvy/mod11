@@ -3,7 +3,7 @@ declare namespace rut_lib {
 
 	export function obtenerDigitoVerificador(rut: string): string;
 
-	export function esValido(rut: string): string;
+	export function validar(rut: string): boolean;
 }
 
 export = rut_lib;
