@@ -1,21 +1,20 @@
-/**
- * @author      : prxvvy (qsk55464@gmail.com)
- * @created     : 25/01/2022
- * @filename    : rut
- */
-#ifndef RUT_H
-#define RUT_H
+//
+// Created by prxvvy on 27-01-22.
+//
+
+#ifndef ALGORITHM_RUT_H
+#define ALGORITHM_RUT_H
 
 #include "bool.h"
 
 #define MOD11 11
-#define RUTCONDIGITOLONGITUD 9
-#define RUTSINDIGITOLONGITUD 8
+#define RUTWITHOUTDIGIT 8
+#define RUTWITHDIGIT 9
 
-char *LimpiarRut(char *p_rutCompleto);
+char GetDigit(char *p_rut);
 
-char ObtenerDigidoVerificador(char *p_numer);
+char *Clean(char *p_rut);
 
-int EsValido(char *p_rut);
+Bool ValidateRut(char *p_rut);
 
-#endif /* RUT_H */
+#endif //ALGORITHM_RUT_H

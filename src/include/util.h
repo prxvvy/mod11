@@ -1,20 +1,21 @@
-/**
- * @author      : prxvvy (qsk55464@gmail.com)
- * @created     : 25/01/2022
- * @filename    : util
- */
-#ifndef UTIL_H
-#define UTIL_H
+//
+// Created by prxvvy on 27-01-22.
+//
 
-#include "bool.h"
+#ifndef ALGORITHM_UTIL_H
+#define ALGORITHM_UTIL_H
+
 #include <stddef.h>
+#include "bool.h"
 
-char *Replace(char *p_input, char *p_toReplace, char *p_replaceWith);
+Bool Includes(char *p_input, char *p_toFind);
 
-Bool Includes(char *p_input, char *p_charToFind);
+char *Replace(char *p_input, char *p_toReplace, char *p_toReplaceWith);
 
-void ReverseString(char *p_string);
+char *Strip(char *p_input, char *p_garbage);
 
-char *SliceString(char *p_str, int end, size_t newSizeString);
+char *CutStr(char *p_input, int end, size_t newSize);
 
-#endif /* UTIL_H */
+char *ReverseStr(char *p_input);
+
+#endif //ALGORITHM_UTIL_H

@@ -1,14 +1,13 @@
-/**
- * @author      : prxvvy (qsk55464@gmail.com)
- * @created     : 25/01/2022
- * @filename    : bool
- */
-#ifndef BOOL_H
-#define BOOL_H
+//
+// Created by prxvvy on 27-01-22.
+//
+
+#ifndef ALGORITHM_BOOL_H
+#define ALGORITHM_BOOL_H
 
 typedef enum Bool {
-	TRUE,
-	FALSE
+    TRUE,
+    FALSE
 } Bool;
 
-#endif /* BOOL_H */
+#endif //ALGORITHM_BOOL_H

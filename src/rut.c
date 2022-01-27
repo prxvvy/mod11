@@ -1,72 +1,71 @@
-/*
-* =================================================
-*
-*       Filename: rut
-*
-*    Description:
-*
-*        Created: 25/01/2022
-*
-*        Author:  prxvvy (qsk55464@gmail.com)
-*
-*
-* =================================================
-*/
+//
+// Created by prxvvy on 27-01-22.
+//
 
+#include <stdio.h>
 #include <stdlib.h>
-#include "include/bool.h"
-#include "include/util.h"
 #include <string.h>
 #include "include/rut.h"
+#include "include/util.h"
 
-int EsValido(char *p_rut) {
-  char *p_rutLimpio = NULL;
-  if (Includes(p_rut, "-") == TRUE || Includes(p_rut, ".") == TRUE || Includes(p_rut, "*") == TRUE) p_rutLimpio = LimpiarRut(p_rut);
-  else {
-    p_rutLimpio = calloc(strlen(p_rut) + 1, sizeof(char));
-    strcpy(p_rutLimpio, p_rut);
-  }
-  char *p_numero = SliceString(p_rutLimpio, RUTSINDIGITOLONGITUD, 9);
-  free(p_rutLimpio);
-  if (p_numero[0] == '0') return 0;
-  char digito = ObtenerDigidoVerificador(p_numero);
-  if (digito == 'K' || digito == '0') return 1;
-  else if (((int) digito - 48) > 1 && ((int) digito - 48) < 9) return 1;
-  else return 0;
-  free(p_numero);
+char *Clean(char *p_rut) {
+    if (!p_rut) {
+        printf("1 argument expected.");
+        exit(0);
+    }
+    return Strip(p_rut, "-/*.?![]{}=`,");
 }
 
-char *LimpiarRut(char *p_rutCompleto) {
-  char *p_rutLimpio = NULL;
-  if (Includes(p_rutCompleto, "-") == TRUE) p_rutLimpio = Replace(p_rutCompleto, "-", "");  
-  else if (Includes(p_rutCompleto, ".") == TRUE) p_rutLimpio = Replace(p_rutCompleto, ".", "");
-  else if (Includes(p_rutCompleto, "*") == TRUE) p_rutLimpio = Replace(p_rutCompleto, "*", "");  
-  else p_rutLimpio = p_rutCompleto;
-  return p_rutLimpio;
+Bool ValidateRut(char *p_rut) {
+    if (!p_rut) {
+        printf("1 argument expected.");
+        exit(0);
+    }
+
+    char *p_tmpRut = Clean(p_rut); /* We clean the rut */
+    char *p_tmpRut1 = CutStr(p_tmpRut, RUTWITHDIGIT, strlen(p_tmpRut) + 1); /* we store only 8 chars of the rut. */
+    char *p_rutToWorkWith = ReverseStr(p_tmpRut1); /* Reverse it */
+    free(p_tmpRut); /** We need it no more */
+    free(p_tmpRut1); /** We need it no more */
+
+    if (p_rutToWorkWith[0] == '0') return FALSE; /* If rut starts with 0 */
+
+    char digit = GetDigit(p_rutToWorkWith);
+    free(p_rutToWorkWith);
+    if (digit == 'K' || digit == '0') return TRUE;
+    else if (((int) digit - 48) > 1 && ((int) digit - 48) < 9) return TRUE;
+    else return FALSE;
 }
 
-char ObtenerDigidoVerificador(char *p_numero) {
-  char *p_rutLimpio = NULL;
-  if (Includes(p_numero, "-") == TRUE || Includes(p_numero, ".") == TRUE || Includes(p_numero, "*") == TRUE) p_rutLimpio = LimpiarRut(p_numero);
-  else {
-    p_rutLimpio = calloc(strlen(p_numero) + 1, sizeof(char));
-    strcpy(p_rutLimpio, p_numero);
-  }
-  char *p_numeroo = SliceString(p_rutLimpio, RUTSINDIGITOLONGITUD, 9);
-  free(p_rutLimpio);
-  ReverseString(p_numeroo);
-  int digito = 0;
-  int multiplicador = 1;
-  int suma = 0;
-  for (int i = 0; i < strlen(p_numeroo); i++) {
-    multiplicador++;
-    if (multiplicador == 8) multiplicador = 2;
-    int num = (int) p_numeroo[i] - 48;
-    suma += num * multiplicador;
-  } 
-  free(p_numeroo); // Deberia ir a lo ultimo cuando ya no se usa la variable puntero
-  digito = MOD11 - (suma % MOD11);
-  if (digito == 11) return '0';
-  else if (digito == 10) return 'K';
-  else return (char) digito + '0';
+char GetDigit(char *p_rut) {
+
+    int digit;
+    int multiplier = 1;
+    int total = 0;
+
+    if (!p_rut) {
+        printf("1 argument expected.");
+        exit(0);
+    }
+
+    char *p_tmpRut = Clean(p_rut); /* We clean the rut */
+    char *p_tmpRut1 = CutStr(p_tmpRut, RUTWITHOUTDIGIT, strlen(p_tmpRut) + 1); /* we store only 8 chars of the rut. */
+    char *p_rutToWorkWith = ReverseStr(p_tmpRut1); /* Reverse it */
+    free(p_tmpRut); /** We need it no more */
+    free(p_tmpRut1); /** We need it no more */
+
+    for (int i = 0; i < strlen(p_rutToWorkWith); ++i) {
+        multiplier++;
+        if (multiplier == 8) multiplier = 2;
+        int num = (int) p_rutToWorkWith[i] - 48;
+        total += num * multiplier;
+    }
+
+    free(p_rutToWorkWith); /* We need it no more */
+
+    digit = MOD11 - (total % MOD11);
+    if (digit == 11) return '0';
+    else if (digit == 10) return 'K';
+    else return (char) digit + '0';
+
 }
