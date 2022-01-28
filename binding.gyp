@@ -3,6 +3,7 @@
         {
             "target_name": "rut_lib",
             "sources": [
+            "./src/main.c"
             "./src/include/bool.h",
             "./src/include/list.h",
             "./src/include/node.h",
