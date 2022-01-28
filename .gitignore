@@ -10,3 +10,4 @@ test/
 lib/
 *.out
 *.o
+.idea/

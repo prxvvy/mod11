@@ -21,7 +21,7 @@ char *ReverseStr(char *p_input) {
         InsertAtBeginning(p_charList, &(char[2]) {(char) p_input[i], '\0'} /* Turn it into a string. */,
                           sizeof(char *)); /* Little trick */
     }
-    /* Walk the list once. */
+    /* Walk the list. */
     Node *p_node1 = p_charList->p_head;
     p_newString = calloc(GetSize(p_charList) + 1, sizeof(char));
     while (1) {
@@ -36,8 +36,33 @@ char *ReverseStr(char *p_input) {
 }
 
 Bool Includes(char *p_input, char *p_toFind) {
-    char *res = strstr(p_input, p_toFind);
-    return res ? TRUE : FALSE;
+
+    size_t sLen = strlen(p_input);
+    size_t toFindLen = strlen(p_toFind);
+
+    unsigned int timesFound = 0;
+
+    if (sLen > toFindLen) {
+        for (unsigned int i = 0, j = 0; i < sLen; ++i) {
+            do {
+                if (p_input[i] == p_toFind[j]) { /* If stars with same char */
+                    if (++timesFound == toFindLen) return TRUE; /* If got same len */
+                    i++;
+                    j++;
+                } else {
+
+                    i -= timesFound;
+                    timesFound = 0;
+                    j = 0;
+
+                }
+            } while (timesFound);
+        }
+        return FALSE;
+    } else {
+        printf("\"%s\" is longer than \"%s\"\n", p_toFind, p_input);
+        return FALSE;
+    }
 }
 
 /**
@@ -69,7 +94,7 @@ char *Replace(char *p_input, char *p_toReplace, char *p_toReplaceWith) {
         if (p_node == p_charList->p_head) break;
     }
 
-    /* Walk the list once. */
+    /* Walk the list once again. */
     Node *p_node1 = p_charList->p_head;
     p_newString = calloc(GetSize(p_charList) + 1, sizeof(char));
     while (1) {
@@ -119,7 +144,7 @@ char *Strip(char *p_input, char *p_garbage) {
         if (p_nodeCharList == p_charList->p_head) break;
     }
 
-    /* Walk the list once. */
+    /* Walk the list once again. */
     Node *p_node1 = p_charList->p_head;
     p_newString = calloc(GetSize(p_charList) + 1, sizeof(char));
     while (1) {
