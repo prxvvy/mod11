@@ -3,10 +3,11 @@
     "version": "0.0.1",
     "description": "Libreria para validar un RUT (Chile).",
     "typings": "./index.d.ts",
+    "gypfile": true,
     "scripts": {
         "start": "node dist",
         "config": "node-gyp configure build",
-        "dev": "ts-node-dev --watch -- ./test",
+        "dev": "ts-node-dev --watch -- ./index.ts",
         "build": "tsc"
     },
     "repository": {

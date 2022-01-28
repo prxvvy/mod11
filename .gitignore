@@ -11,3 +11,4 @@ lib/
 *.out
 *.o
 .idea/
+CMakeLists.txt

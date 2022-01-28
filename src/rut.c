@@ -1,11 +1,11 @@
 //
-// Created by prxvvy on 27-01-22.
+// Created by prxvvy on 28-01-22.
 //
 
+#include "include/rut.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "include/rut.h"
 #include "include/util.h"
 
 char *Clean(char *p_rut) {
@@ -17,16 +17,17 @@ char *Clean(char *p_rut) {
 }
 
 Bool ValidateRut(char *p_rut) {
+
     if (!p_rut) {
         printf("1 argument expected.");
         exit(0);
     }
 
     char *p_tmpRut = Clean(p_rut); /* We clean the rut */
-    char *p_tmpRut1 = CutStr(p_tmpRut, RUTWITHDIGIT, strlen(p_tmpRut) + 1); /* we store only 8 chars of the rut. */
-    char *p_rutToWorkWith = ReverseStr(p_tmpRut1); /* Reverse it */
+    CutRes *p_tmpRut1 = CutStr(p_tmpRut, RUTWITHOUTDIGIT, RUTWITHOUTDIGIT + 1); /* we store only 8 chars of the rut. */
+    char *p_rutToWorkWith = ReverseStr(p_tmpRut1->p_str1); /* Reverse it */
     free(p_tmpRut); /** We need it no more */
-    free(p_tmpRut1); /** We need it no more */
+    DestroyCutRes(p_tmpRut1); /** We need it no more */
 
     if (p_rutToWorkWith[0] == '0') return FALSE; /* If rut starts with 0 */
 
@@ -49,10 +50,10 @@ char GetDigit(char *p_rut) {
     }
 
     char *p_tmpRut = Clean(p_rut); /* We clean the rut */
-    char *p_tmpRut1 = CutStr(p_tmpRut, RUTWITHOUTDIGIT, strlen(p_tmpRut) + 1); /* we store only 8 chars of the rut. */
-    char *p_rutToWorkWith = ReverseStr(p_tmpRut1); /* Reverse it */
+    CutRes *p_tmpRut1 = CutStr(p_tmpRut, RUTWITHOUTDIGIT, RUTWITHOUTDIGIT + 1); /* we store only 8 chars of the rut. */
+    char *p_rutToWorkWith = ReverseStr(p_tmpRut1->p_str1); /* Reverse it */
     free(p_tmpRut); /** We need it no more */
-    free(p_tmpRut1); /** We need it no more */
+    DestroyCutRes(p_tmpRut1); /** We need it no more */
 
     for (int i = 0; i < strlen(p_rutToWorkWith); ++i) {
         multiplier++;

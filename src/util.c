@@ -1,5 +1,5 @@
 //
-// Created by prxvvy on 27-01-22.
+// Created by prxvvy on 28-01-22.
 //
 
 #include "include/util.h"
@@ -173,10 +173,45 @@ char *Strip(char *p_input, char *p_garbage) {
  * @return A new str allocated with calloc (Must free!).
  */
 
-char *CutStr(char *p_input, int end, size_t newSize) {
-    char *p_newString = calloc(newSize, sizeof(char));
-    for (int i = 0; i < end; ++i) {
-        strcat(p_newString, (char[2]) {(char) p_input[i], '\0'} /* Turn it into a string. */);
+CutRes *CutStr(char *p_input, int end, size_t newSize) {
+
+    if (end > strlen(p_input)) {
+        printf("End is longer than str len.\n");
+        exit(0);
     }
-    return p_newString;
+
+    char *p_firstPart = calloc(newSize, sizeof(char));
+    char *p_secondPart = calloc(((strlen(p_input) + 1) - newSize) + 1, sizeof(char));
+
+
+    int i;
+
+    for (i = 0; i < end; ++i) {
+        strcat(p_firstPart, (char[2]) {(char) p_input[i], '\0'} /* Turn it into a string. */);
+    }
+
+    for (int j = i; j < (strlen(p_input) + 1); ++j) {
+        strcat(p_secondPart, (char[2]) {(char) p_input[j], '\0'} /* Turn it into a string. */);
+    }
+
+    CutRes *res = calloc(1, sizeof(struct CutRes));
+
+    res->p_str1 = calloc(strlen(p_firstPart) + 1, sizeof(char));
+    strcpy(res->p_str1, p_firstPart);
+
+    res->p_str2 = calloc(strlen(p_secondPart) + 1, sizeof(char));
+    strcpy(res->p_str2, p_secondPart);
+
+    free(p_firstPart);
+    free(p_secondPart);
+
+    return res;
+
+}
+
+Bool DestroyCutRes(CutRes *res) {
+    free(res->p_str1);
+    free(res->p_str2);
+    free(res);
+    return TRUE;
 }

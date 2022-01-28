@@ -1,10 +1,10 @@
 //
-// Created by prxvvy on 27-01-22.
+// Created by prxvvy on 28-01-22.
 //
 
+#include "include/node.h"
 #include <stdlib.h>
 #include <string.h>
-#include "include/node.h"
 
 Node *CreateNode(void *p_value, size_t size) {
     Node *self = calloc(1, sizeof(struct Node));

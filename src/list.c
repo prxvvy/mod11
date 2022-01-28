@@ -1,9 +1,9 @@
 //
-// Created by prxvvy on 27-01-22.
+// Created by prxvvy on 28-01-22.
 //
 
-#include <stdlib.h>
 #include "include/list.h"
+#include <stdlib.h>
 
 void DestroyEach(List *list) {
     Node *p_node = list->p_head;
