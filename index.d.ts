@@ -15,30 +15,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-//
-// Created by prxvvy on 29-01-22.
-//
-
-#include <stdlib.h>
-#include <string.h>
-#include "include/node.h"
-
-Node *CreateNode(void *p_value, size_t valueSize) {
-
-    Node *self = calloc(1, sizeof(struct Node));
-
-    self->p_value = calloc(1, valueSize);
-
-    memcpy(self->p_value, p_value, valueSize);
-
-    self->p_next = NULL;
-    self->p_previous = NULL;
-
-    return self;
+declare namespace rut_lib {
+    export const limpiarRut = (rut: string): string => {};
+    export const obtenerDigitoVerificador = (rut: string): string => {};
 }
 
-Bool DestroyNode(Node *p_node) {
-    free(p_node->p_value);
-    free(p_node);
-    return TRUE;
-}
+export = rut_lib;
+export as namespace rut_lib;

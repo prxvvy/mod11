@@ -8,7 +8,7 @@
         "start": "node dist",
         "config": "node-gyp configure build",
         "clean": "node-gyp clean",
-        "dev": "ts-node-dev --watch -- ./index.ts",
+        "dev": "ts-node-dev --watch -- ./test",
         "build": "tsc"
     },
     "repository": {

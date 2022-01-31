@@ -1,3 +1,20 @@
+/* mod11 - A program to validate a Chilean RUT (id).
+ * Copyright (C) 2021 prxvvy <qsk55464@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 //
 // Created by prxvvy on 28-01-22.
 //
@@ -19,11 +36,9 @@ Bool DestroyCutRes(CutRes *res);
 
 Bool Includes(char *p_input, char *p_toFind);
 
-char *Replace(char *p_input, char *p_toReplace, char *p_toReplaceWith);
-
 char *Strip(char *p_input, char *p_garbage);
 
-CutRes *CutStr(char *p_input, int end, size_t newSize);
+CutRes *CutStr(char *p_input, unsigned int end, size_t newSize);
 
 char *ReverseStr(char *p_input);
 
