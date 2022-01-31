@@ -1,6 +1,6 @@
 # Modulo 11 (mod11)
 
-Liberia para validar un rut (Chile) y más cosas para Node.js.
+Liberia para validar un rut (Chile) y más cosas para [Node.js](https://nodejs.org/en/).
 
 ---
 
