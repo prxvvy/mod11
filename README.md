@@ -1,6 +1,6 @@
 # Modulo 11 (mod11)
 
-Liberia para validar un rut (Chile) y más cosas.
+Liberia para validar un rut (Chile) y más cosas para Node.js.
 
 ---
 
@@ -19,6 +19,43 @@ npm i mod11
 -   **_obtenerDigitoVerificador(rut)_** -> Obtenga el dígito verificador de un rut pasado como argumento. No importa si ya
     se le pasa el dígito verificador, la function hara la tarea de cortar el rut con la cantidad de numeros necesaria para
     trabajar.
+
+## Uso
+
+Usar mod11 es facil.
+
+```js
+const mod11 = require('mod11'); // Simplemente requierelo en tu archivo .js de Node
+```
+
+Ahora...
+
+Para limpiar un rut...
+
+```js
+console.log(mod11.limpiarRut('15,576.215-2')); // 155762152
+```
+
+Para obtener el digito verificador de un rut...
+
+```js
+console.log(mod11.obtenerDigitoVerificador('15.576.215')); // 2
+```
+
+O también
+
+```js
+console.log(mod11.obtenerDigitoVerificador('15576215')); // 2
+```
+
+Y claro, por supuesto...
+
+```js
+console.log(mod11.obtenerDigitoVerificador('15.576.215-2')); // 2
+/**
+ * Ya que solo tomara la cantidad de numeros necesaria sin el digito.
+ */
+```
 
 Esta libreria aún está en desarrollo, pero las dos funciones disponibles, están para produccion, por asi decirlo.
 Cualquier inconveniente con respecto a la liberia, hacer un issue en este repo.
