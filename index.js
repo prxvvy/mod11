@@ -70,7 +70,7 @@ var darFormato = function (rut, puntos) {
     if (typeof rut !== 'string')
         throw new TypeError('El rut debe ser un string.');
     if (puntos && typeof puntos != 'boolean')
-        throw new TypeError('Si se va a dar formato al rut con puntos, el segundo parametro debe ser un booleando.');
+        throw new TypeError('Si se va a dar formato al rut con puntos, el segundo parametro debe ser un booleano.');
     return addon.formatWithDots(rut);
 };
 module.exports = {
