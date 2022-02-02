@@ -23,6 +23,7 @@
 #define ALGORITHM_UTIL_H
 
 #include <stddef.h>
+
 #include "bool.h"
 
 /* Private struct for CutStr function. WIll be treated as return value. */
@@ -42,4 +43,4 @@ CutRes *CutStr(char *p_input, unsigned int end, size_t newSize);
 
 char *ReverseStr(char *p_input);
 
-#endif //ALGORITHM_UTIL_H
+#endif  // ALGORITHM_UTIL_H

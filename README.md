@@ -19,6 +19,9 @@ npm i mod11
 -   **_obtenerDigitoVerificador(rut)_** -> Obtenga el dígito verificador de un rut pasado como argumento. No importa si ya
     se le pasa el dígito verificador, la function hara la tarea de cortar el rut con la cantidad de numeros necesaria para
     trabajar.
+-   **_darFormato(rut)_** -> Con esta funcion podra darle formato a un rut.
+    El formato default es "12345678-9".
+    Si se le pasa el parametro OPCIONAL de puntos como `true`, dara como resultado el formato "12.345.678-9".
 
 ## Uso
 

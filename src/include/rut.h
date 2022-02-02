@@ -34,4 +34,6 @@ char *Clean(char *p_rut);
 
 Bool ValidateRut(char *p_rut);
 
-#endif //ALGORITHM_RUT_H
+char *Format(char *p_rut, Bool dots);
+
+#endif  // ALGORITHM_RUT_H

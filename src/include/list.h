@@ -52,4 +52,6 @@ Node *GetNodeAt(List *p_list, unsigned int index);
 
 Bool UnlinkNode(List *p_list, Node *p_node);
 
-#endif //CLINKEDLIST_LIST_H
+int Insert(List *p_list, void *p_value, size_t valueSize, unsigned int index);
+
+#endif  // CLINKEDLIST_LIST_H

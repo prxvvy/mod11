@@ -22,10 +22,14 @@
 #ifndef ALGORITHM_RUT_NODE_H
 #define ALGORITHM_RUT_NODE_H
 
-#include <node_api.h>
+#include <node/node_api.h>
 
 napi_value NodeGetDigit(napi_env env, napi_callback_info info);
 
 napi_value NodeClean(napi_env env, napi_callback_info info);
 
-#endif //ALGORITHM_RUT_NODE_H
+napi_value NodeFormatRut(napi_env env, napi_callback_info info);
+
+napi_value NodeFormatRutWithDots(napi_env env, napi_callback_info info);
+
+#endif  // ALGORITHM_RUT_NODE_H

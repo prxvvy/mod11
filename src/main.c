@@ -24,10 +24,10 @@
  */
 
 #include <node_api.h>
+
 #include "include/rut_node.h"
 
 napi_value Init(napi_env env, napi_value exports) {
-
     napi_status status;
     napi_value func;
 
@@ -35,7 +35,8 @@ napi_value Init(napi_env env, napi_value exports) {
     if (status != napi_ok) {
         napi_throw_error(env, NULL, "Unable to wrap native function.");
     }
-    status = napi_set_named_property(env, exports, "obtenerDigitoVerificador", func);
+    status =
+        napi_set_named_property(env, exports, "obtenerDigitoVerificador", func);
     if (status != napi_ok) {
         napi_throw_error(env, NULL, "Unable to populate exports.");
     }
@@ -45,6 +46,25 @@ napi_value Init(napi_env env, napi_value exports) {
         napi_throw_error(env, NULL, "Unable to wrap native function.");
     }
     status = napi_set_named_property(env, exports, "limpiarRut", func);
+    if (status != napi_ok) {
+        napi_throw_error(env, NULL, "Unable to populate exports.");
+    }
+
+    status = napi_create_function(env, NULL, 0, NodeFormatRut, NULL, &func);
+    if (status != napi_ok) {
+        napi_throw_error(env, NULL, "Unable to wrap native function.");
+    }
+    status = napi_set_named_property(env, exports, "format", func);
+    if (status != napi_ok) {
+        napi_throw_error(env, NULL, "Unable to populate exports.");
+    }
+
+    status =
+        napi_create_function(env, NULL, 0, NodeFormatRutWithDots, NULL, &func);
+    if (status != napi_ok) {
+        napi_throw_error(env, NULL, "Unable to wrap native function.");
+    }
+    status = napi_set_named_property(env, exports, "formatWithDots", func);
     if (status != napi_ok) {
         napi_throw_error(env, NULL, "Unable to populate exports.");
     }
