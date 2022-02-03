@@ -66,12 +66,12 @@ var darFormato = function (rut, puntos) {
     if (!rut)
         throw new Error('Se require un parametro.');
     if (!puntos)
-        return addon.format(rut);
+        return addon.darFormato(rut, false);
     if (typeof rut !== 'string')
         throw new TypeError('El rut debe ser un string.');
     if (puntos && typeof puntos != 'boolean')
         throw new TypeError('Si se va a dar formato al rut con puntos, el segundo parametro debe ser un booleano.');
-    return addon.formatWithDots(rut);
+    return addon.darFormato(rut, true);
 };
 module.exports = {
     obtenerDigitoVerificador: obtenerDigitoVerificador,

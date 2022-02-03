@@ -11,3 +11,6 @@ lib/
 *.out
 *.o
 .idea/
+CMakeLists.txt
+Debug/
+compile_commands.json
