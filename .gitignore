@@ -14,3 +14,4 @@ lib/
 CMakeLists.txt
 Debug/
 compile_commands.json
+.cache/
