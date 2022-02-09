@@ -20,6 +20,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var bindings_1 = __importDefault(require("bindings"));
 var addon = (0, bindings_1["default"])('rut_lib');
+var strictRegex = /^0*(\d{1,3}(\.?\d{3})*)-?([\dkK])$/;
+var nonStrictRegex = /[^kK]/g;
 /**
  * @description Obtener el digito verificador de un rut.
  * @param {string} rut - El rut (con o sin digito) del cual se quiere saber su digito verificador.
@@ -30,6 +32,8 @@ var obtenerDigitoVerificador = function (rut) {
         throw new Error('Se require un parametro.');
     if (typeof rut !== 'string')
         throw new TypeError('El rut debe ser un string.');
+    if (!nonStrictRegex.test(rut))
+        throw new TypeError('El rut debe contener solo numeros.');
     return addon.obtenerDigitoVerificador(rut);
 };
 /**
@@ -42,6 +46,8 @@ var limpiarRut = function (rut) {
         throw new Error('Se require un parametro.');
     if (typeof rut !== 'string')
         throw new TypeError('El rut debe ser un string.');
+    if (nonStrictRegex.test(rut))
+        throw new TypeError('El rut no debe contener letras.');
     return addon.limpiarRut(rut);
 };
 /**
@@ -65,16 +71,33 @@ var limpiarRut = function (rut) {
 var darFormato = function (rut, puntos) {
     if (!rut)
         throw new Error('Se require un parametro.');
-    if (!puntos)
-        return addon.darFormato(rut, false);
     if (typeof rut !== 'string')
         throw new TypeError('El rut debe ser un string.');
+    if (nonStrictRegex.test(rut))
+        throw new TypeError('El rut debe contener solo numeros.');
+    if (!puntos)
+        return addon.darFormato(rut, false);
     if (puntos && typeof puntos != 'boolean')
         throw new TypeError('Si se va a dar formato al rut con puntos, el segundo parametro debe ser un booleano.');
     return addon.darFormato(rut, true);
 };
+/**
+ * @description Verifcar si un rut con digito verificador es valido o no.
+ * @param {string} rut - El rut el cual se quiere verificador
+ * @return {boolean} Si es o no valid.
+ */
+var validarRut = function (rut) {
+    if (!rut)
+        throw new Error('Se require un parametro.');
+    if (typeof rut !== 'string')
+        throw new TypeError('El rut debe ser un string.');
+    if (!strictRegex.test(rut))
+        throw new TypeError('El rut debe contener solo numeros.');
+    return addon.validarRut(rut);
+};
 module.exports = {
     obtenerDigitoVerificador: obtenerDigitoVerificador,
     limpiarRut: limpiarRut,
-    darFormato: darFormato
+    darFormato: darFormato,
+    validarRut: validarRut
 };

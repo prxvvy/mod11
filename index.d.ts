@@ -51,6 +51,14 @@ declare namespace rut_lib {
      */
 
     export function darFormato(rut: string, puntos?: boolean): string;
+
+    /**
+     * @description Verifcar si un rut con digito verificador es valido o no.
+     * @param {string} rut - El rut el cual se quiere verificador
+     * @return {boolean} Si es o no valid.
+     */
+
+    export function validarRut(rut: string): boolean;
 }
 
 export = rut_lib;

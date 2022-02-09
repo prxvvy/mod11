@@ -122,6 +122,26 @@ Value FormatRutNode(const CallbackInfo &info) {
    return formattedRut;
 }
 
+Value ValidateRutNode(const CallbackInfo &info) {
+   Env env = info.Env();
+   if (info.Length() == 0) {
+      throw TypeError::New(env, "validarRut() espera 1 parametro.");
+   }
+
+   if (!info[0].IsString()) {
+      throw TypeError::New(
+          env, "validarRut() recive como primer parametro un string.");
+   }
+
+   string input = info[0].As<String>();
+
+   char *p_input = const_cast<char *>(input.c_str());
+
+   Bool isValid = ValidateRut(p_input);
+
+   return isValid == TRUE ? Boolean::New(env, true) : Boolean::New(env, false);
+}
+
 Object Init(Env env, Object exports) {
    exports.Set(String::New(env, "limpiarRut"),
                Function::New(env, CleanRutNode));
@@ -129,6 +149,8 @@ Object Init(Env env, Object exports) {
                Function::New(env, GetDigitNode));
    exports.Set(String::New(env, "darFormato"),
                Function::New(env, FormatRutNode));
+   exports.Set(String::New(env, "validarRut"),
+               Function::New(env, ValidateRutNode));
    return exports;
 }
 
