@@ -15,6 +15,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/**
+ * modulo 11 o simplemente mod11.
+ * Liberia para validar un rut (Chile) y más cosas para Node.js.
+ */
+
 declare namespace rut_lib {
     /**
      * @description Obtener el digito verificador de un rut.

@@ -12,7 +12,7 @@ Liberia para validar un rut (Chile) y más cosas para [Node.js](https://nodejs.o
 npm i mod11
 ```
 
-**_La liberia, por ahora, cuenta con 3 funciones_**:
+**_La liberia, por ahora, cuenta con 4 funciones_**:
 
 -   **_limpiarRut(rut)_** -> Limpia un rut pasado como argumento. Por limpiar, se refiere a, quitar caracteres no
     numericos.
@@ -22,13 +22,15 @@ npm i mod11
 -   **_darFormato(rut)_** -> Con esta funcion podra darle formato a un rut.
     El formato default es "12345678-9".
     Si se le pasa el parametro OPCIONAL de `puntos` como `true`, dara como resultado el formato "12.345.678-9".
+-   **_validarRut(rut)_** -> Con esta funcion podra validar si un rut es valido o no. Es preferible que ingrese el rut completo con su digito verificador.
 
 ## Uso
 
 Usar mod11 es facil.
+Simplemente, requira o importe la propiedad de exportacion (namespace) con cualquier nombre de su preferencia.
 
 ```js
-const mod11 = require('mod11'); // Simplemente requierelo en tu archivo .js de Node
+const mod11 = require('mod11');
 ```
 
 Ahora...
