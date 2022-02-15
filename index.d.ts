@@ -17,7 +17,7 @@
 
 /**
  * modulo 11 o simplemente mod11.
- * Liberia para validar un rut (Chile) y más cosas para Node.js.
+ * Liberia para validar un rut (Chile) Node.js.
  */
 
 declare namespace rut_lib {

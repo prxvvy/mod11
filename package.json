@@ -1,6 +1,6 @@
 {
     "name": "mod11",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "Libreria para validar un RUT (Chile).",
     "typings": "./index.d.ts",
     "gypfile": true,
