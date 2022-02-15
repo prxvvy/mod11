@@ -1,10 +1,8 @@
 # Modulo 11 (mod11)
 
-Liberia para validar un rut (Chile) y más cosas para [Node.js](https://nodejs.org/en/).
+Liberia para validar un rut (Chile) para [Node.js](https://nodejs.org/en/).
 
 ---
-
-###### _Tener en cuenta que este programa es gratis y está bajo la licencia GPL, cualquiera puede ver/modificar el codigo fuente si asi lo desea y además puede contribuir al programa._
 
 ## Instalacion
 
@@ -12,58 +10,56 @@ Liberia para validar un rut (Chile) y más cosas para [Node.js](https://nodejs.o
 npm i mod11
 ```
 
-**_La liberia, por ahora, cuenta con 4 funciones_**:
+Sistemas operativos Unix-like (Si es que no se encuentra en super usuario).
 
--   **_limpiarRut(rut)_** -> Limpia un rut pasado como argumento. Por limpiar, se refiere a, quitar caracteres no
-    numericos.
--   **_obtenerDigitoVerificador(rut)_** -> Obtenga el dígito verificador de un rut pasado como argumento. No importa si ya
-    se le pasa el dígito verificador, la function hara la tarea de cortar el rut con la cantidad de numeros necesaria para
-    trabajar.
--   **_darFormato(rut)_** -> Con esta funcion podra darle formato a un rut.
-    El formato default es "12345678-9".
-    Si se le pasa el parametro OPCIONAL de `puntos` como `true`, dara como resultado el formato "12.345.678-9".
--   **_validarRut(rut)_** -> Con esta funcion podra validar si un rut es valido o no. Es preferible que ingrese el rut completo con su digito verificador.
+```
+$ sudo npm i mod11
+```
 
 ## Uso
 
-Usar mod11 es facil.
-Simplemente, requira o importe la propiedad de exportacion (namespace) con cualquier nombre de su preferencia.
+Importe o requiera el objeto de exportacion.
 
 ```js
-const mod11 = require('mod11');
+const mod11 = require("mod11");
 ```
 
-Ahora...
-
-Para limpiar un rut...
+## Ejemplos
 
 ```js
-console.log(mod11.limpiarRut('15,576.215-2')); // 155762152
+const mod11 = require("mod11");
+// import mod11 from 'mod11';
+
+// Para limpiar un rut.
+
+mod11.limpiarRut("15,576.215-2"); // 155762152
+mod11.limpiarRut("15.576.215-2"); // 155762152
+mod11.limpiarRut("15576.215-2"); // 155762152
+mod11.limpiarRut("15*576*215/2"); // 155762152
+
+// Para obtener el digito verificador de un rut.
+// Puede proveer el rut de distintas maneras como a usted le plazca.
+
+mod11.obtenerDigitoVerificador("15.576.215"); // 2
+mod11.obtenerDigitoVerificador("15.576.215-2"); // 2
+
+// Para darle formato a un rut.
+// Puede proveer el rut de distintas maneras como a usted le plazca.
+// Si no se le incluye el digito verificador, la funcion lo agregara por usted.
+
+mod11.darFormato("15.576.215-2"); // 15576215-2
+mod11.darFormato("15.576*215"); // 15576215-2
+mod11.darFormato("15.576.215-2", true); // 15.576.215-2
+mod11.darFormato("15.576.215", true); // 15.576.215-2
+
+// Para validar si un rut es correcto o no.
+// Por temas de precision, es recomendable que a esta funcion si se le pase un rut completo, osease, con digito verificador. Da igual si se le pasa con puntos o guion.
+
+mod11.validarRut("15.576.215-2"); // true
+mod11.validarRut("15.576.2152"); // true
+mod11.validarRut("15.576.215-4"); // false
+mod11.validarRut("155762154"); // false
 ```
-
-Para obtener el digito verificador de un rut...
-
-```js
-console.log(mod11.obtenerDigitoVerificador('15.576.215')); // 2
-```
-
-O también
-
-```js
-console.log(mod11.obtenerDigitoVerificador('15576215')); // 2
-```
-
-Y claro, por supuesto...
-
-```js
-console.log(mod11.obtenerDigitoVerificador('15.576.215-2')); // 2
-/**
- * Ya que solo tomara la cantidad de numeros necesaria sin el digito.
- */
-```
-
-Esta libreria aún está en desarrollo, pero las dos funciones disponibles, están para produccion, por asi decirlo.
-Cualquier inconveniente con respecto a la liberia, hacer un issue en este repo.
 
 ## Licensing (Licencia)
 

@@ -28,13 +28,7 @@
 #include "include/list.h"
 #include "include/util.h"
 
-char *Clean(char *p_rut) {
-    if (!p_rut) {
-        printf("1 argument expected.");
-        exit(0);
-    }
-    return Strip(p_rut, "-/*.?![]{}=`,");
-}
+char *Clean(char *p_rut) { return Strip(p_rut, "-/*.?![]{}=`, "); }
 
 Bool ValidateRut(char *p_rut) {
     char *p_tmpRut = Clean(p_rut); /* We clean the rut */

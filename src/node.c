@@ -19,12 +19,12 @@
 // Created by prxvvy on 29-01-22.
 //
 
-#include <stdlib.h>
-#include <string.h>
 #include "include/node.h"
 
-Node *CreateNode(void *p_value, size_t valueSize) {
+#include <stdlib.h>
+#include <string.h>
 
+Node *CreateNode(void *p_value, size_t valueSize) {
     Node *self = calloc(1, sizeof(struct Node));
 
     self->p_value = calloc(1, valueSize);
