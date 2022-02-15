@@ -1,5 +1,5 @@
 /* mod11 - A program to validate a Chilean RUT (id).
- * Copyright (C) 2021 prxvvy <qsk55464@gmail.com>
+ * Copyright (C) 2022 prxvvy <qsk55464@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +22,6 @@
 #ifndef ALGORITHM_BOOL_H
 #define ALGORITHM_BOOL_H
 
-typedef enum Bool {
-    FALSE,
-    TRUE
-} Bool;
+typedef enum Bool { FALSE, TRUE } Bool;
 
-#endif //ALGORITHM_BOOL_H
+#endif  // ALGORITHM_BOOL_H

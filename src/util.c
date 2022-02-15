@@ -1,5 +1,5 @@
 /* mod11 - A program to validate a Chilean RUT (id).
- * Copyright (C) 2021 prxvvy <qsk55464@gmail.com>
+ * Copyright (C) 2022 prxvvy <qsk55464@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,12 @@
 //
 
 #include "include/util.h"
-#include "include/list.h"
-#include <string.h>
-#include <stdlib.h>
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "include/list.h"
 
 /**
  * Reverse a given string.
@@ -35,14 +37,17 @@ char *ReverseStr(char *p_input) {
     List *p_charList = CreateList();
     char *p_newString;
     for (unsigned int i = 0; i < strlen(p_input); ++i) {
-        InsertAtBeginning(p_charList, &(char[2]) {(char) p_input[i], '\0'} /* Turn it into a string. */,
-                          sizeof(char *)); /* Little trick */
+        InsertAtBeginning(
+            p_charList,
+            &(char[2]){(char)p_input[i], '\0'} /* Turn it into a string. */,
+            sizeof(char *)); /* Little trick */
     }
     /* Walk the list. */
     Node *p_node1 = p_charList->p_head;
     p_newString = calloc(GetSize(p_charList) + 1, sizeof(char));
     for (unsigned int i = 0; i < GetSize(p_charList); ++i) {
-        strcat(p_newString, p_node1->p_value); // Append byte by byte to the new string.
+        strcat(p_newString,
+               p_node1->p_value);  // Append byte by byte to the new string.
         p_node1 = p_node1->p_next; /* Continue... */
     }
     DestroyEach(p_charList);
@@ -52,7 +57,6 @@ char *ReverseStr(char *p_input) {
 }
 
 Bool Includes(char *p_input, char *p_toFind) {
-
     size_t sLen = strlen(p_input);
     size_t toFindLen = strlen(p_toFind);
 
@@ -62,15 +66,14 @@ Bool Includes(char *p_input, char *p_toFind) {
         for (unsigned int i = 0, j = 0; i < sLen; ++i) {
             do {
                 if (p_input[i] == p_toFind[j]) { /* If stars with same char */
-                    if (++timesFound == toFindLen) return TRUE; /* If got same len */
+                    if (++timesFound == toFindLen)
+                        return TRUE; /* If got same len */
                     i++;
                     j++;
                 } else {
-
                     i -= timesFound;
                     timesFound = 0;
                     j = 0;
-
                 }
             } while (timesFound);
         }
@@ -83,8 +86,8 @@ Bool Includes(char *p_input, char *p_toFind) {
 
 /**
  * A replacement for Replace function.
- * Does what Replace function does, but kind of better, also depending on what you want.
- * Will remove all the elements in a str.
+ * Does what Replace function does, but kind of better, also depending on what
+ * you want. Will remove all the elements in a str.
  * @param p_input The str we are gonna manipulate.
  * @param p_garbage A str with all the elements we don't want in our str.
  * @return A new str allocated with calloc (Must free!).
@@ -95,10 +98,16 @@ char *Strip(char *p_input, char *p_garbage) {
     List *p_garbageList = CreateList();
     char *p_newString;
     for (unsigned int i = 0; i < strlen(p_input); ++i)
-        InsertAtEnd(p_charList, &(char[2]) {(char) p_input[i], '\0'} /* Turn it into a string. */, sizeof(char *));
+        InsertAtEnd(
+            p_charList,
+            &(char[2]){(char)p_input[i], '\0'} /* Turn it into a string. */,
+            sizeof(char *));
 
     for (unsigned int j = 0; j < strlen(p_garbage); ++j)
-        InsertAtEnd(p_garbageList, &(char[2]) {(char) p_garbage[j], '\0'} /* Turn it into a string. */, sizeof(char *));
+        InsertAtEnd(
+            p_garbageList,
+            &(char[2]){(char)p_garbage[j], '\0'} /* Turn it into a string. */,
+            sizeof(char *));
 
     /* Walk both lists. */
 
@@ -107,10 +116,13 @@ char *Strip(char *p_input, char *p_garbage) {
 
     for (unsigned int i = 0; i < GetSize(p_charList); ++i) {
         for (unsigned int j = 0; j < GetSize(p_garbageList); ++j) {
-            if (strcmp(p_nodeCharList->p_value, p_nodeGarbageList->p_value) == 0) {
-                Node *p_currentToDestroy = p_nodeCharList; /* Store the current node to unlink */
-                p_nodeCharList = p_nodeCharList->p_next;  /* Move forward  */
-                UnlinkNode(p_charList, p_currentToDestroy); /* Unlink the stored node */
+            if (strcmp(p_nodeCharList->p_value, p_nodeGarbageList->p_value) ==
+                0) {
+                Node *p_currentToDestroy =
+                    p_nodeCharList; /* Store the current node to unlink */
+                p_nodeCharList = p_nodeCharList->p_next; /* Move forward  */
+                UnlinkNode(p_charList,
+                           p_currentToDestroy); /* Unlink the stored node */
             }
             p_nodeGarbageList = p_nodeGarbageList->p_next;
         }
@@ -148,24 +160,25 @@ char *Strip(char *p_input, char *p_garbage) {
  */
 
 CutRes *CutStr(char *p_input, unsigned int end, size_t newSize) {
-
     if (end > strlen(p_input)) {
         printf("End is longer than str len.\n");
         exit(0);
     }
 
     char *p_firstPart = calloc(newSize, sizeof(char));
-    char *p_secondPart = calloc(((strlen(p_input) + 1) - newSize) + 1, sizeof(char));
-
+    char *p_secondPart =
+        calloc(((strlen(p_input) + 1) - newSize) + 1, sizeof(char));
 
     unsigned int i;
 
     for (i = 0; i < end; ++i) {
-        strcat(p_firstPart, (char[2]) {(char) p_input[i], '\0'} /* Turn it into a string. */);
+        strcat(p_firstPart,
+               (char[2]){(char)p_input[i], '\0'} /* Turn it into a string. */);
     }
 
     for (unsigned int j = i; j < (strlen(p_input) + 1); ++j) {
-        strcat(p_secondPart, (char[2]) {(char) p_input[j], '\0'} /* Turn it into a string. */);
+        strcat(p_secondPart,
+               (char[2]){(char)p_input[j], '\0'} /* Turn it into a string. */);
     }
 
     CutRes *res = calloc(1, sizeof(struct CutRes));
@@ -180,7 +193,6 @@ CutRes *CutStr(char *p_input, unsigned int end, size_t newSize) {
     free(p_secondPart);
 
     return res;
-
 }
 
 Bool DestroyCutRes(CutRes *res) {
