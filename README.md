@@ -1,5 +1,11 @@
 # Modulo 11 (mod11)
 
+[![Version](https://img.shields.io/npm/v/mod11?color=red&logo=npm)](https://www.npmjs.com/package/mod11)
+[![Downloads](https://img.shields.io/npm/dw/mod11?logo=npm)](https://www.npmjs.com/package/mod11)
+[![Activity](https://img.shields.io/github/last-commit/prxvvy/mod11?color=blue&logo=github)](https://github.com/prxvvy/mod11)
+[![Github](https://img.shields.io/github/package-json/v/prxvvy/mod11?color=yellow&label=github&logo=github)](https://github.com/prxvvy/mod11)
+[![License](https://img.shields.io/github/license/prxvvy/mod11?color=brown&logo=GNU)](https://github.com/prxvvy/mod11/blob/master/COPYING)
+
 Liberia para validar un rut (Chile) para [Node.js](https://nodejs.org/en/).
 
 ---
@@ -10,15 +16,7 @@ Liberia para validar un rut (Chile) para [Node.js](https://nodejs.org/en/).
 npm i mod11
 ```
 
-Sistemas operativos Unix-like (Si es que no se encuentra en super usuario).
-
-```
-$ sudo npm i mod11
-```
-
 ## Uso
-
-Importe o requiera el objeto de exportacion.
 
 ```js
 const mod11 = require('mod11');
