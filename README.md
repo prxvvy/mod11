@@ -6,7 +6,7 @@
 [![Github](https://img.shields.io/github/package-json/v/prxvvy/mod11?color=yellow&label=github&logo=github)](https://github.com/prxvvy/mod11)
 [![License](https://img.shields.io/github/license/prxvvy/mod11?color=brown&logo=GNU)](https://github.com/prxvvy/mod11/blob/master/COPYING)
 
-Liberia para validar un rut (Chile) para [Node.js](https://nodejs.org/en/).
+Libreria para validar un rut (Chile) para [Node.js](https://nodejs.org/en/).
 
 ---
 
