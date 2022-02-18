@@ -93,17 +93,14 @@ char *Format(char *p_rut, Bool dots) {
     char *p_tmpRut = Clean(p_rut); /* We clean the rut */
     char *p_formattedRut = NULL;
     CutRes *p_rutToWorkWith =
-        CutStr(p_tmpRut, RUTWITHOUTDIGIT,
-               RUTWITHOUTDIGIT + 1); /* we store only 9 chars of the rut. */
-    free(p_tmpRut);                  /** We need it no more */
+        CutStr(p_tmpRut, RUTWITHDIGIT,
+               RUTWITHDIGIT + 1); /* we store only 9 chars of the rut. */
+    free(p_tmpRut);               /** We need it no more */
     List *p_rutChars = CreateList();
     for (unsigned int i = 0; i < strlen(p_rutToWorkWith->p_str1); ++i) {
         InsertAtEnd(p_rutChars, (char[2]){p_rutToWorkWith->p_str1[i], '\0'},
                     sizeof(char *));
     }
-
-    InsertAtEnd(p_rutChars, (char[2]){GetDigit(p_rutToWorkWith->p_str1), '\0'},
-                sizeof(char *));
 
     DestroyCutRes(p_rutToWorkWith);
     if (dots == FALSE) {
