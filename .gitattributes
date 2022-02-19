@@ -2,3 +2,4 @@
 *.cpp linguist-language=Javascript
 *.h linguist-language=Javascript
 *.hpp linguist-language=Javascript
+*.gyp linguist-language=Javascript
