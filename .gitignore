@@ -5,7 +5,6 @@ Makefile
 tsconfig.json
 build/
 .git/
-index.ts
 test/
 lib/
 *.out
@@ -16,3 +15,8 @@ Debug/
 compile_commands.json
 .cache/
 cmake-build-debug/
+.clang-format
+build_
+debug 
+run
+index.ts

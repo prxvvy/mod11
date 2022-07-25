@@ -16,31 +16,14 @@
  */
 
 //
-// Created by prxvvy on 28-01-22.
+// Created by prxvvy on 20/07/2022
 //
 
-#ifndef ALGORITHM_UTIL_H
-#define ALGORITHM_UTIL_H
+#ifndef _UTIL_H_
+#define _UTIL_H_
 
-#include <stddef.h>
+int strip (char *, const char *, const char *);
 
-#include "bool.h"
+int reverse_str (char *, const char *);
 
-/* Private struct for CutStr function. WIll be treated as return value. */
-
-typedef struct CutRes {
-    char *p_str1;
-    char *p_str2;
-} CutRes;
-
-Bool DestroyCutRes(CutRes *res);
-
-Bool Includes(char *p_input, char *p_toFind);
-
-char *Strip(char *p_input, char *p_garbage);
-
-CutRes *CutStr(char *p_input, unsigned int end, size_t newSize);
-
-char *ReverseStr(char *p_input);
-
-#endif  // ALGORITHM_UTIL_H
+#endif // _UTIL_H_

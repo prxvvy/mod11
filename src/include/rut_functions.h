@@ -16,29 +16,24 @@
  */
 
 //
-// Created by prxvvy on 29-01-22.
+// Created by prxvvy on 20/07/2022
 //
 
-#include "include/node.h"
+#ifndef _RUT_FUNCTIONS_H_
+#define _RUT_FUNCTIONS_H_
 
-#include <stdlib.h>
-#include <string.h>
+#define MOD11 11
+#define RUTWITHOUTDIGIT 8
+#define RUTWITHDIGIT 9
 
-Node *CreateNode(void *p_value, size_t valueSize) {
-    Node *self = calloc(1, sizeof(struct Node));
+int mod11_clean_rut (char *, const char *);
 
-    self->p_value = calloc(1, valueSize);
+char mod11_get_checker_digit (const char *);
 
-    memcpy(self->p_value, p_value, valueSize);
+int mod11_is_rut_valid (const char *);
 
-    self->p_next = NULL;
-    self->p_previous = NULL;
+int mod11_format_rut (char *, const char *, int);
 
-    return self;
-}
+int mod11_rut_contains_letters (const char *);
 
-Bool DestroyNode(Node *p_node) {
-    free(p_node->p_value);
-    free(p_node);
-    return TRUE;
-}
+#endif // _RUT_FUNCTIONS_H_
